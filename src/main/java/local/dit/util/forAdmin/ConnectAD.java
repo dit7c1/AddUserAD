@@ -1,9 +1,12 @@
 package local.dit.util.forAdmin;
 
+
+import javafx.application.Platform;
 import javafx.scene.control.Label;
 import local.dit.model.SettingsDataAD;
 
 import java.util.Hashtable;
+import java.util.TimerTask;
 import javax.naming.NamingException;
 import javax.naming.ldap.InitialLdapContext;
 import javax.naming.ldap.LdapContext;
@@ -30,9 +33,31 @@ public class ConnectAD {
             context = new InitialLdapContext(env, null);
             statusID.setText("Success");
             statusID.setStyle("-fx-text-fill: green");
+            // возвращаем дефолтный цвет и статус через 7 сек
+            new java.util.Timer().schedule(
+                    new TimerTask() {
+                        public void run() {
+                            Platform.runLater(() -> {
+                                statusID.setText("Status");
+                                statusID.setStyle("-fx-text-fill: black");
+                            });
+                        }
+                    }, 7000);
+
         } catch (NamingException e) {
             statusID.setText("Error");
             statusID.setStyle("-fx-text-fill: red");
+            // возвращаем дефолтный цвет и статус через 7 сек
+            new java.util.Timer().schedule(
+                    new TimerTask() {
+                        public void run() {
+                            Platform.runLater(() -> {
+                                statusID.setText("Status");
+                                statusID.setStyle("-fx-text-fill: black");
+                            });
+                        }
+                    }, 7000);
+
             System.err.println("Problem creating object: ");
             e.printStackTrace();
         }
