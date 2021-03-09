@@ -2,7 +2,6 @@ package local.dit.util.forUser;
 
 import local.dit.model.UserData;
 import local.dit.util.forAdmin.ConnectAD;
-
 import javax.naming.directory.Attribute;
 import javax.naming.directory.Attributes;
 import javax.naming.directory.BasicAttribute;

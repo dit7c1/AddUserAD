@@ -1,10 +1,8 @@
 package local.dit.util.forAdmin;
 
-
 import javafx.application.Platform;
 import javafx.scene.control.Label;
 import local.dit.model.SettingsDataAD;
-
 import java.util.Hashtable;
 import java.util.TimerTask;
 import javax.naming.NamingException;

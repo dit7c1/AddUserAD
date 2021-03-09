@@ -7,6 +7,7 @@ import javafx.scene.control.*;
 import local.dit.model.AdminDataAD;
 import local.dit.model.SettingsDataAD;
 import local.dit.model.UserData;
+import local.dit.util.SaveFile;
 import local.dit.util.forAdmin.ConnectAD;
 import local.dit.util.forUser.CreateUser;
 import local.dit.view.FillData;
@@ -122,5 +123,10 @@ public class Controller {
     public void onClickButtonCreateAction() {
         CreateUser createUser = new CreateUser();
         createUser.addUser(userData);
+    }
+
+    public void onClickButtonSaveAction() {
+        SaveFile saveFile = new SaveFile();
+        saveFile.save(userData);
     }
 }
