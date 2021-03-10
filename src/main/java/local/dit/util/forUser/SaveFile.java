@@ -1,4 +1,4 @@
-package local.dit.util;
+package local.dit.util.forUser;
 
 import local.dit.model.UserData;
 import java.io.FileWriter;
@@ -9,8 +9,8 @@ import java.util.Date;
 public class SaveFile {
 
     public void save(UserData userData) {
-        String date = new SimpleDateFormat("dd.MM.yyyy").format(new Date());
-        try (FileWriter writer = new FileWriter(userData.getUserLogin() + "." + date + ".txt", false)) {
+        String date = new SimpleDateFormat("dd.MM.yyyy(HH.mm.ss)").format(new Date());
+        try (FileWriter saveFile = new FileWriter(userData.getUserLogin() + "." + date + ".txt", false)) {
             StringBuilder str = new StringBuilder();
             str.append("Сотрудник: \t");
             str.append(userData.getLastName());
@@ -27,8 +27,8 @@ public class SaveFile {
             str.append("\n");
             str.append("Пароль: \t");
             str.append(userData.getUserPassword());
-            writer.write(str.toString());
-            //writer.flush();
+            saveFile.write(str.toString());
+            //saveFile.flush();
         } catch (IOException e) {
             e.printStackTrace();
         }
