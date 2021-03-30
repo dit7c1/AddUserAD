@@ -7,6 +7,7 @@ import javafx.scene.control.*;
 import local.dit.model.AdminDataAD;
 import local.dit.model.SettingsDataAD;
 import local.dit.model.UserData;
+import local.dit.util.forAdmin.AllUsersAD;
 import local.dit.util.forUser.SaveFile;
 import local.dit.util.forAdmin.ConnectAD;
 import local.dit.util.forUser.CreateUser;
@@ -120,8 +121,17 @@ public class Controller {
     }
 
     // создать пользователя
-    public void onClickButtonCreateAction() {
-        new CreateUser().addUser(userData);
-        new SaveFile().save(userData);
+    public void onClickButtonCreateAction() throws NamingException {
+        AllUsersAD allUsersAD = new AllUsersAD();
+        if (!allUsersAD.searchUsers(userData)) {
+            new CreateUser().addUser(userData);
+            new SaveFile().save(userData);
+        } else {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Error");
+            alert.setHeaderText("Пользователь не создан!");
+            alert.setContentText("Пользователь с логином " + userData.getUserLogin() + " - уже существует!");
+            alert.showAndWait();
+        }
     }
 }
