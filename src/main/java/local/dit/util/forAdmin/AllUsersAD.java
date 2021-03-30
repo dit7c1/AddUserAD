@@ -25,13 +25,10 @@ public class AllUsersAD {
         while (users.hasMore()) {
             searchResult = (SearchResult) users.next();
             Attributes attr = searchResult.getAttributes();
-
             commonName = attr.get("cn").get(0).toString();
             sAMAccountName = attr.get("sAMAccountName").get(0).toString();
-
             result = sAMAccountName.equals(userLogin.getUserLogin());
         }
-
         return result;
     }
 }
